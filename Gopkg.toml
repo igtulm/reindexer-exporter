@@ -1,0 +1,11 @@
+[prune]
+  go-tests = true
+  unused-packages = true
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/Sirupsen/logrus"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/prometheus/client_golang"

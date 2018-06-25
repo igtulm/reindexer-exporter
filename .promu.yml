@@ -1,0 +1,24 @@
+verbose: true
+go:
+    version: "1.10"
+    cgo: false
+# repository:
+#     path: github.com/..
+build:
+    flags: -a -tags netgo
+    ldflags: |
+        -X main.Version={{.Version}}
+        -X main.Revision={{.Revision}}
+        -X main.Branch={{.Branch}}
+        -X main.BuildDate={{date "00000000-00:00:00"}}
+tarball:
+    files:
+        - LICENSE
+crossbuild:
+    platforms:
+        - linux/amd64
+        - linux/386
+        - darwin/amd64
+        - darwin/386
+        - windows/amd64
+        - windows/386
