@@ -1,6 +1,5 @@
-!/cmd/.keep
-!/vendor/.keep
-
-
 vendor/*
 cmd/*
+
+!/cmd/.keep
+!/vendor/.keep
