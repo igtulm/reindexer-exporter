@@ -2,8 +2,8 @@ verbose: true
 go:
     version: "1.10"
     cgo: false
-# repository:
-#     path: github.com/..
+repository:
+    path: github.com/igtulm/reindexer-exporter
 build:
     flags: -a -tags netgo
     ldflags: |

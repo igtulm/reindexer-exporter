@@ -20,6 +20,15 @@
   version = "v1.1.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/kylelemons/godebug"
+  packages = [
+    "diff",
+    "pretty"
+  ]
+  revision = "d65d576e9348f5982d7f6d83682b694e731a45c6"
+
+[[projects]]
   name = "github.com/matttproud/golang_protobuf_extensions"
   packages = ["pbutil"]
   revision = "c12348ce28de40eed0136aa2b644d0ee0650e56c"
@@ -76,6 +85,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4858b05e4bbcf6ea07628fb6784976b7619edbb6b2cc34cf8030801c13a4be28"
+  inputs-digest = "e18867851aca51960de202b5fc407d48726a70c116b3c855bb063433b2b9cd47"
   solver-name = "gps-cdcl"
   solver-version = 1
