@@ -9,7 +9,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-const defaultLogLevel = log.InfoLevel
+const defaultLogLevel = log.ErrorLevel
 
 func initLogger() {
 	log.SetLevel(getLogLevel())
