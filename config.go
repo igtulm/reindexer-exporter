@@ -19,7 +19,7 @@ var (
 		ReindexerUsername: "owner",
 		ReindexerPassword: "123456",
 		ReindexerDBName:   "itv_api_ng",
-		EnabledExporters:  []string{"dbinfo", "perfstats", "memstats"},
+		EnabledExporters:  []string{"perfstats", "memstats"},
 	}
 )
 
