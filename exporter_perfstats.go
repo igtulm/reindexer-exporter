@@ -10,27 +10,30 @@ func init() {
 	RegisterExporter("perfstats", newExporterPerfstats)
 }
 
+type PerfstatUpdates struct {
+	TotalQueriesCount    int `json:"total_queries_count"`
+	TotalAvgLatencyUs    int `json:"total_avg_latency_us"`
+	TotalAvgLockTimeUs   int `json:"total_avg_lock_time_us"`
+	LastSecQPS           int `json:"last_sec_qps"`
+	LastSecAvgLockTimeUs int `json:"last_sec_avg_lock_time_us"`
+	LastSecAvgLatencyUs  int `json:"last_sec_avg_latency_us"`
+}
+
+type PerfstatSelects struct {
+	TotalQueriesCount    int `json:"total_queries_count"`
+	TotalAvgLatencyUs    int `json:"total_avg_latency_us"`
+	TotalAvgLockTimeUs   int `json:"total_avg_lock_time_us"`
+	LastSecQPS           int `json:"last_sec_qps"`
+	LastSecAvgLockTimeUs int `json:"last_sec_avg_lock_time_us"`
+	LastSecAvgLatencyUs  int `json:"last_sec_avg_latency_us"`
+}
+
 type PerfstatsResponse struct {
 	Items []struct {
-		Name    string `json:"name"`
-		Updates struct {
-			TotalQueriesCount    int `json:"total_queries_count"`
-			TotalAvgLatencyUs    int `json:"total_avg_latency_us"`
-			TotalAvgLockTimeUs   int `json:"total_avg_lock_time_us"`
-			LastSecQPS           int `json:"last_sec_qps"`
-			LastSecAvgLockTimeUs int `json:"last_sec_avg_lock_time_us"`
-			LastSecAvgLatencyUs  int `json:"last_sec_avg_latency_us"`
-		} `json:"updates"`
-		Selects struct {
-			TotalQueriesCount    int `json:"total_queries_count"`
-			TotalAvgLatencyUs    int `json:"total_avg_latency_us"`
-			TotalAvgLockTimeUs   int `json:"total_avg_lock_time_us"`
-			LastSecQPS           int `json:"last_sec_qps"`
-			LastSecAvgLockTimeUs int `json:"last_sec_avg_lock_time_us"`
-			LastSecAvgLatencyUs  int `json:"last_sec_avg_latency_us"`
-		} `json:"selects"`
+		Name    string          `json:"name"`
+		Updates PerfstatUpdates `json:"updates"`
+		Selects PerfstatSelects `json:"selects"`
 	} `json:"items"`
-	TotalItems int `json:"total_items"`
 }
 
 type exporterPerfstats struct {
@@ -56,7 +59,7 @@ func (e exporterPerfstats) String() string {
 }
 
 func (e exporterPerfstats) Collect(ch chan<- prometheus.Metric) error {
-	perfstatsData, _ := loadJson(config, "#perfstats")
+	perfstatsData, _ := apiGetQuery(config, "#perfstats")
 	perfstats := PerfstatsResponse{}
 	if err := json.Unmarshal(perfstatsData, &perfstats); err != nil {
 		return err

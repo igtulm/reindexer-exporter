@@ -59,8 +59,7 @@ type MemstatsItems struct {
 }
 
 type MemstatsResponse struct {
-	Items      []MemstatsItems `json:"items"`
-	TotalItems int             `json:"total_items"`
+	Items []MemstatsItems `json:"items"`
 }
 
 type exporterMemstats struct {
@@ -87,7 +86,7 @@ func (e exporterMemstats) String() string {
 }
 
 func (e exporterMemstats) Collect(ch chan<- prometheus.Metric) error {
-	memstatsData, _ := loadJson(config, "#memstats")
+	memstatsData, _ := apiGetQuery(config, "#memstats")
 	memstats := MemstatsResponse{}
 	if err := json.Unmarshal(memstatsData, &memstats); err != nil {
 		return err

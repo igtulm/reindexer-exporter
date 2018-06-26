@@ -18,8 +18,7 @@ func initClient() {
 	}
 }
 
-func loadJson(config reindexerExporterConfig, endpoint string) ([]byte, error) {
-	req_url := config.ReindexerURL + "/api/v1/db/" + config.ReindexerDBName + "/namespaces/" + url.QueryEscape(endpoint) + "/items"
+func apiRequest(req_url string) ([]byte, error) {
 	req, err := http.NewRequest("GET", req_url, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err, "request": req_url}).Error("Error while requiesting")
@@ -48,4 +47,16 @@ func loadJson(config reindexerExporterConfig, endpoint string) ([]byte, error) {
 	log.WithFields(log.Fields{"body": string(body), "request": req_url}).Debug("Metrics loaded")
 
 	return body, err
+}
+
+func apiGetNamespacesList(config reindexerExporterConfig) ([]byte, error) {
+	req_url := config.ReindexerURL + "/api/v1/db/" + config.ReindexerDBName + "/namespaces"
+
+	return apiRequest(req_url)
+}
+
+func apiGetQuery(config reindexerExporterConfig, endpoint string) ([]byte, error) {
+	req_url := config.ReindexerURL + "/api/v1/db/" + config.ReindexerDBName + "/query?q=" + url.QueryEscape("SELECT * FROM "+endpoint)
+
+	return apiRequest(req_url)
 }
