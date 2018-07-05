@@ -1,7 +1,7 @@
 # Reindexer Exporter
 
 Prometheus exporter for [Reindexer](https://github.com/Restream/reindexer) metrics.
-Data is scraped by [prometheus](https://prometheus.io).
+Data is scraped by [Prometheus](https://prometheus.io).
 
 Metrics are exposed through [http://localhost:9451/metrics](http://localhost:9451/metrics).
 
@@ -9,7 +9,7 @@ Metrics are exposed through [http://localhost:9451/metrics](http://localhost:945
 ## How to start
 - [Build and run the exporter](#build-and-run-the-exporter)
 - [Prometheus configure](#prometheus-configure)
-- [Run Prometheus](#run-prometheus)
+- Run Prometheus
 
 ## Build and run the exporter
 
