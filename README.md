@@ -8,7 +8,7 @@ Metrics are exposed through [http://localhost:9451/metrics](http://localhost:945
 
 ## How to start
 - [Build and run the exporter](#build-and-run-the-exporter)
-- [Prometheus configure](#prometheus-configure)
+- [Prometheus configuration](#prometheus-configuration)
 - Run Prometheus
 
 ## Build and run the exporter
@@ -19,7 +19,7 @@ make
 cmd/reindexer_exporter
 ```
 
-## Prometheus configure
+## Prometheus configuration
 
 ```yml
 # my global config
